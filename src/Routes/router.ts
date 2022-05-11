@@ -10,6 +10,7 @@ router.get('/ping', (req, res) => {
 });
 
 router.post('/user/signup', AuthValidator.signup,  AuthController.signup);
+router.post('/user/signin', AuthValidator.signin, AuthController.signin);
 
 
 export default router;

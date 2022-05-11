@@ -16,6 +16,6 @@ export const State = sequelize.define<StateInterfarce>('State', {
         type: DataTypes.STRING
     }
 },{
-    tableName: 'States',
+    tableName: 'states',
     timestamps: false
 })
