@@ -17,7 +17,26 @@ export const info = async (req: Request, res: Response) => {
     const state = await State.findOne({where: {name: user?.state}});
     const ads = await Ads.findAll({where: {iduser: user?.id}});
 
-    res.json({state});
+    let adList = [];
+
+    for(let i in ads) {
+
+        const cat = await Category.findOne({where: {name: ads[i].category}});
+
+        adList.push({
+            id: ads[i].id,
+            status: ads[i].status,
+            images: ads[i].image,
+            category: cat?.slug
+        });
+    }
+
+    res.json({
+        name: user?.name,
+        email: user?.email,
+        state: state?.name,
+        ads: adList
+    });
 }
 
 export const editInfo = async (req: Request, res: Response) => {

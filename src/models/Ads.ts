@@ -5,7 +5,7 @@ export interface AdsInterface extends Model {
     id: number,
     iduser: number,
     category: string,
-    image: [object],
+    image: string,
     datecreate: Date,
     title: string,
     price: number,
