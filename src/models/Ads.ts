@@ -3,13 +3,13 @@ import { sequelize } from '../Instances/pg';
 
 export interface AdsInterface extends Model {
     id: number,
-    idUser: number,
+    iduser: number,
     category: string,
     image: [object],
-    dateCreate: Date,
+    datecreate: Date,
     title: string,
     price: number,
-    priceNegotiable: Boolean,
+    pricenegotiable: Boolean,
     description: string,
     views: number,
     status: string
@@ -21,7 +21,7 @@ export const Ads = sequelize.define<AdsInterface>('Ads', {
         primaryKey: true,
         type: DataTypes.INTEGER
     },
-    idUser: {
+    iduser: {
         type: DataTypes.INTEGER
     },
     category: {
@@ -30,7 +30,7 @@ export const Ads = sequelize.define<AdsInterface>('Ads', {
     image: {
         type: DataTypes.STRING
     },
-    dateCreate: {
+    datecreate: {
         type: DataTypes.DATE
     },
     title: {
@@ -39,7 +39,7 @@ export const Ads = sequelize.define<AdsInterface>('Ads', {
     price: {
         type: DataTypes.NUMBER
     },
-    priceNegotiable: {
+    pricenegotiable: {
         type: DataTypes.BOOLEAN
     },
     description: {
@@ -51,4 +51,7 @@ export const Ads = sequelize.define<AdsInterface>('Ads', {
     status: {
         type: DataTypes.STRING
     }
+}, {
+    tableName: 'ads',
+    timestamps:false
 })
