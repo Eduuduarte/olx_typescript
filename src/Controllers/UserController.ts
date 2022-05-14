@@ -3,6 +3,8 @@ import { State } from '../models/State';
 import { Ads } from '../models/Ads';
 import { User } from '../models/User';
 import { Category } from '../models/Category';
+import { validationResult, matchedData } from 'express-validator';
+import * as UserService from '../Service/UserService';
 
 export const getStates = async (req: Request, res: Response) => {
     let state = await State.findAll();
@@ -40,5 +42,16 @@ export const info = async (req: Request, res: Response) => {
 }
 
 export const editInfo = async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+        res.json({ error: errors.mapped()});
+        return;
+    }
+
+    const data = matchedData(req);
+
+    const updateUser = await UserService.editAction(data.email, data.name, data.password, data.state, data.token);
+    res.status(200);
+    res.json({updateUser});
 
 }

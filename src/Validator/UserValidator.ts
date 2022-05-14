@@ -40,6 +40,9 @@ export const signin = checkSchema({
 });
 
 export const editAction = checkSchema({
+    token: {
+        notEmpty: true
+    },
     name: {
         trim: true,
         isLength: {
@@ -59,7 +62,6 @@ export const editAction = checkSchema({
         errorMessage: 'Senha precisa ter pelo menos 2 caracteres'
     },
     state: {
-        notEmpty: true,
         errorMessage: 'Estado não preenchido',
     }
 })
