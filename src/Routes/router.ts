@@ -17,7 +17,7 @@ router.post('/user/signup', AuthValidator.signup,  AuthController.signup);
 router.post('/user/signin', AuthValidator.signin, AuthController.signin);
 
 router.get('/user/me', Auth.privateAuth, UserController.info);
-router.put('/user/me', Auth.privateAuth, UserController.editInfo);
+router.put('/user/me', AuthValidator.editAction, Auth.privateAuth, UserController.editInfo);
 
 
 export default router;
