@@ -22,6 +22,8 @@ router.put('/user/me', AuthValidator.editAction, Auth.privateAuth, UserControlle
 
 router.get('/categories', AdsController.getCategories);
 
+router.post('/ad/add', Auth.privateAuth, AdsController.addAction);
+
 
 
 export default router;

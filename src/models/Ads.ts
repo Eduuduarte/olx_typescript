@@ -4,6 +4,7 @@ import { sequelize } from '../Instances/pg';
 export interface AdsInterface extends Model {
     id: number,
     iduser: number,
+    state: string,
     category: string,
     image: string,
     datecreate: Date,
@@ -49,6 +50,9 @@ export const Ads = sequelize.define<AdsInterface>('Ads', {
         type: DataTypes.INTEGER
     },
     status: {
+        type: DataTypes.STRING
+    },
+    state: {
         type: DataTypes.STRING
     }
 }, {
