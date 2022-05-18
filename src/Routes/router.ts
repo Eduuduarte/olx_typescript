@@ -23,6 +23,9 @@ router.put('/user/me', AuthValidator.editAction, Auth.privateAuth, UserControlle
 router.get('/categories', AdsController.getCategories);
 
 router.post('/ad/add', Auth.privateAuth, AdsController.addAction);
+router.get('/ad/list', AdsController.getList);
+router.get('/ad/item', AdsController.getItem);
+router.post('/ad/:id', Auth.privateAuth, AdsController.editAction);
 
 
 

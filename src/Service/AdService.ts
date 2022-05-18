@@ -1,4 +1,3 @@
-import { addImage } from '../functions/image'
 import { User } from '../models/User';
 import { Category } from '../models/Category';
 import { Ads } from '../models/Ads';
