@@ -5,6 +5,7 @@ import { Category } from '../models/Category';
 import * as AdService from '../Service/AdService';
 
 import { addImage } from '../functions/image'
+import { NUMBER } from 'sequelize';
 
 
 export const getCategories = async (req: Request, res: Response) => {
@@ -35,8 +36,15 @@ export const addAction = async (req: Request, res: Response) => {
 }
 
 export const getList = async (req: Request, res: Response) => {
+    let sort = req.query.sort as 'ASC' | 'DESC';
+    let offset = NUMBER(req.query.offset);
+    let limit = NUMBER(req.query.limit);
+    let search = req.query.search as string;
+    let category = req.query.category as string;
+    let state = req.query.state as string;
 
 }
+
 
 export const getItem = async (req: Request, res: Response) => {
 
