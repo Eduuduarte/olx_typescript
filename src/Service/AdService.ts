@@ -1,6 +1,7 @@
 import { User } from '../models/User';
 import { Category } from '../models/Category';
 import { Ads } from '../models/Ads';
+import { Op } from 'sequelize';
 
 
 export const addAd = async (title: string, price: string, priceneg: string, desc: string, cat: string, token: string) => {
@@ -41,4 +42,10 @@ export const addAd = async (title: string, price: string, priceneg: string, desc
 
     return info;
 
+}
+
+export const catchList = async (sort: string, offset: number, limit: number, q: string, cat: string, state: string ) => {
+    const adList = await Ads.findAll();
+
+    return adList;
 }

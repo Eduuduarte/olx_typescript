@@ -36,12 +36,20 @@ export const addAction = async (req: Request, res: Response) => {
 }
 
 export const getList = async (req: Request, res: Response) => {
-    let sort = req.query.sort as 'ASC' | 'DESC';
-    let offset = NUMBER(req.query.offset);
-    let limit = NUMBER(req.query.limit);
-    let search = req.query.search as string;
-    let category = req.query.category as string;
-    let state = req.query.state as string;
+    let {sort = "asc", offset = 0, limit = 8, q, cat, state } = req.query;
+    let filters = {status: true};
+    let total = 0;
+
+    const list = await AdService.catchList(
+        sort as string, 
+        offset as number, 
+        limit as number, 
+        q as string, 
+        cat as string, 
+        state as string
+    );
+
+    res.json({list});
 
 }
 
