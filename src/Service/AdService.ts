@@ -45,7 +45,24 @@ export const addAd = async (title: string, price: string, priceneg: string, desc
 }
 
 export const catchList = async (sort: string, offset: number, limit: number, q: string, cat: string, state: string ) => {
-    const adList = await Ads.findAll();
+    const filters: any = {
+        status: true
+    };
+
+    if(q) {
+        filters.title = {'$regex': q, '$options': 'i'}
+    }
+
+    if(cat) {
+        const category = await Category.findOne({where: {id: cat}});
+        if(category){
+            filters.category = cat;
+        }
+    }
+    
+    
+    const adList = await Ads.findAll(filters);
+
 
     return adList;
 }

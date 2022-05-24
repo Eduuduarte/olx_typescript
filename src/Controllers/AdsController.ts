@@ -49,7 +49,7 @@ export const getList = async (req: Request, res: Response) => {
         state as string
     );
 
-    res.json({list});
+    res.json({list, cat});
 
 }
 
