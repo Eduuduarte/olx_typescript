@@ -12,7 +12,7 @@ export const privateAuth = async (req: Request, res: Response, next: NextFunctio
         token = req.query.token as string;
     }
     if(req.body.token){
-        token = req.query.token as string;
+        token = req.body.token as string;
     }
 
     if(token == '') {
@@ -20,12 +20,14 @@ export const privateAuth = async (req: Request, res: Response, next: NextFunctio
         return;
     }
 
-    const user = await User.findOne({where: {token}});
+    console.log(token);
+
+    const user = await User.findOne({where:{token}});
 
     if(!user){
         res.json({notallowed: true});
         return;
     }
-
+    
     next();
 }

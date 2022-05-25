@@ -1,9 +1,11 @@
 import bcrypt from 'bcrypt';
 import { User } from '../models/User';
 import { State } from '../models/State';
+import console from 'console';
 
 export const editAction = async (email: string, name: string, password: string, state: string, token: string) => {
-    const user = await User.findOne({where: {token: token}});
+    
+   const user = await User.findOne({where: {token: token}});
     
     let updates: any = {};
 

@@ -50,6 +50,8 @@ export const editInfo = async (req: Request, res: Response) => {
 
     const data = matchedData(req);
 
+    
+
     const updateUser = await UserService.editAction(data.email, data.name, data.password, data.state, data.token);
     res.status(200);
     res.json({updateUser});
