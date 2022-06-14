@@ -55,6 +55,7 @@ export const getList = async (req: Request, res: Response) => {
 
 
 export const getItem = async (req: Request, res: Response) => {
+    let {id,  other = null} = req.query;
 
 }
 

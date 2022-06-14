@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import { User } from '../models/User';
 import { State } from '../models/State';
-import console from 'console';
 
 export const editAction = async (email: string, name: string, password: string, state: string, token: string) => {
     

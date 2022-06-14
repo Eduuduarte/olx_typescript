@@ -45,9 +45,7 @@ export const addAd = async (title: string, price: string, priceneg: string, desc
 }
 
 export const catchList = async (sort: string, offset: number, limit: number, q: string, cat: string, state: string ) => {
-    const filters: any = {
-        status: true
-    };
+    const filters: any = {}
 
     if(q) {
         filters.title = {'$regex': q, '$options': 'i'}
@@ -56,13 +54,20 @@ export const catchList = async (sort: string, offset: number, limit: number, q: 
     if(cat) {
         const category = await Category.findOne({where: {id: cat}});
         if(category){
-            filters.category = cat;
+            filters.category = parseInt(cat);
         }
     }
     
-    
-    const adList = await Ads.findAll(filters);
-
+    console.log(filters)
+    const adList = await Ads.findAll({
+        where: {
+            filters
+        }
+    });
 
     return adList;
+}
+
+export const takeList = async (id: string, other: string) => {
+
 }
