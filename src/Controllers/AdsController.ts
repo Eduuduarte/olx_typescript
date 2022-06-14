@@ -55,8 +55,16 @@ export const getList = async (req: Request, res: Response) => {
 
 
 export const getItem = async (req: Request, res: Response) => {
-    let {id,  other = null} = req.query;
 
+    let id  = req.params.id;
+
+    if(!id){
+        res.json({Error: "Sem produto"})
+    }
+
+    const item = await AdService.takeItem(id as string);
+
+    res.json(item);
 }
 
 export const editAction = async (req: Request, res: Response) => {

@@ -68,6 +68,24 @@ export const catchList = async (sort: string, offset: number, limit: number, q: 
     return adList;
 }
 
-export const takeList = async (id: string, other: string) => {
+export const takeItem = async (id: string) => {
+    let item = await Ads.findByPk(id);
+
+    if(!item) {
+        return "Produto inexistente!";
+    }
+
+    item.views++;
+    await item.save();
+
+    let category = await Category.findByPk(item.category);
+    let userInfo = await User.findByPk(item.iduser);
+
+    return {
+        id: item.id,
+        title: item.title,
+        price: item.price
+    }
+
 
 }
