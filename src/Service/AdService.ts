@@ -84,8 +84,32 @@ export const takeItem = async (id: string) => {
     return {
         id: item.id,
         title: item.title,
-        price: item.price
+        price: item.price,
+        category,
+        description: item.description,
+        views: item.views,
+        state: item.state
+    }
+}
+
+export const edit = async (id: string, title: string, status: string, price: string, priceneg: string, desc: string, cat: string, images: string, token: string) => {
+    const ad = await Ads.findByPk(id);
+
+    if(!ad) {
+        return "Anúncio inexistente!";
     }
 
+    const user = await User.findOne({where: {token}});
+    if(user?.id !== ad.iduser) {
+        return "Este anúncio não pertence a esse usuário!"
+    }
+
+    let updates = {title}
+
+    if(title) {
+        updates.title = title;
+    }
+
+    return updates;
 
 }

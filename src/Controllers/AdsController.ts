@@ -68,5 +68,11 @@ export const getItem = async (req: Request, res: Response) => {
 }
 
 export const editAction = async (req: Request, res: Response) => {
+    let {id} = req.params;
+    let {title, status, price, priceneg, desc, cat, images, token } = req.body;
+
+    const edit = await AdService.edit(id, title, status, price, priceneg, desc, cat, images, token);
+
+    res.json(edit);
 
 }
