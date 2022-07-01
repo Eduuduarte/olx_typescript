@@ -1,8 +1,13 @@
 import { User } from '../models/User';
 import { Category } from '../models/Category';
 import { Ads } from '../models/Ads';
-import { Op } from 'sequelize';
+import { Op, where } from 'sequelize';
 
+interface ADS {
+    title: string,
+    price: string,
+    pricenegotiable: string
+}
 
 export const addAd = async (title: string, price: string, priceneg: string, desc: string, cat: string, token: string) => {
 
@@ -92,9 +97,10 @@ export const takeItem = async (id: string) => {
     }
 }
 
-export const edit = async (id: string, title: string, status: string, price: string, priceneg: string, desc: string, cat: string, images: string, token: string) => {
+export const edit = async (id: string, title: string, status: string, price: string, pricenegotiable: string, desc: string, cat: string, images: string, token: string) => {
+    
     const ad = await Ads.findByPk(id);
-
+   
     if(!ad) {
         return "Anúncio inexistente!";
     }
@@ -104,11 +110,22 @@ export const edit = async (id: string, title: string, status: string, price: str
         return "Este anúncio não pertence a esse usuário!"
     }
 
-    let updates = {title}
+    let updates: Partial<ADS> = {}
 
     if(title) {
-        updates.title = title;
+        updates.title = title
     }
+
+    if(price) {
+        updates.price = price;
+    }
+
+    if(pricenegotiable) {
+        updates.pricenegotiable = pricenegotiable;
+    }
+
+
+    ad.update(updates, {where: {id}});
 
     return updates;
 
