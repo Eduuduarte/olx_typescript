@@ -6,7 +6,9 @@ import { Op, where } from 'sequelize';
 interface ADS {
     title: string,
     price: string,
-    pricenegotiable: string
+    pricenegotiable: string,
+    description: string,
+    category: string
 }
 
 export const addAd = async (title: string, price: string, priceneg: string, desc: string, cat: string, token: string) => {
@@ -124,9 +126,17 @@ export const edit = async (id: string, title: string, status: string, price: str
         updates.pricenegotiable = pricenegotiable;
     }
 
+    if(desc) {
+        updates.description = desc;
+    }
+
+    if(cat) {
+        updates.category = cat;
+    }
+
 
     ad.update(updates, {where: {id}});
 
-    return updates;
+    return ad;
 
 }
