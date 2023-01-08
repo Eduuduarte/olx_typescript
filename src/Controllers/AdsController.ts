@@ -32,7 +32,7 @@ export const addAction = async (req: Request, res: Response) => {
 
     const newAd = await AdService.addAd(title, price, priceneg, desc, cat, token);
 
-    res.json({newAd, file});
+    res.json({title});
 }
 
 export const getList = async (req: Request, res: Response) => {

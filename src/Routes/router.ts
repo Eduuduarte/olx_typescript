@@ -1,15 +1,23 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import * as Auth from '../middlewares/Auth';
 import * as AuthValidator from '../Validator/UserValidator';
 import * as AuthController from '../Controllers/AuthController';
 import * as UserController from '../Controllers/UserController';
 import * as AdsController from '../Controllers/AdsController';
+import * as TesteController from '../Controllers/TesteControler';
+import multer from "multer";
+
+const upload = multer({
+    dest: './temp'
+})
 
 const router = Router();
 
-router.get('/ping', (req, res) => {
+router.get('/ping', (req: Request, res: Response) => {
     res.json({ pong: true });
 });
+
+router.post('/ping', TesteController.Teste);
 
 
 router.get('/states', UserController.getStates);
