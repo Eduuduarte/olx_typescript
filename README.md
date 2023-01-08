@@ -17,7 +17,7 @@ tsc --init
 ### Dependecies
 
 ~~~bash 
-npm install bcrypt multer mysql2 uuid passport express dotenv express-fileupload express-validator path nodemon jimp
+npm install bcrypt multer mysql2 uuid passport express dotenv express-fileupload express-validator path nodemon jimp pg pg-hstore
 ~~~
 
 ### Dev Dependecies
@@ -78,6 +78,26 @@ server.use((req: Request, res: Response)=> {
 
 
 server.listen(process.env.PORT);
+
+~~~
+
+### Config database connection with Sequelize
+
+<p>Database used it was postgreSQL</p>
+
+~~~bash
+
+dotenv.config();
+
+export const sequelize = new Sequelize(
+    process.env.PG_DB as string,
+    process.env.PG_USER as string,
+    process.env.PG_PASSWORD as string,
+    {
+        dialect: 'postgres',
+        port: parseInt(process.env.PG_PORT as string)
+    }
+);
 
 ~~~
 
