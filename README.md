@@ -101,6 +101,13 @@ export const sequelize = new Sequelize(
 
 ~~~
 
+### Creating the token
+
+~~~bash
+    const payload = (Date.now() + Math.random()).toString();
+    const token = await bcrypt.hash(payload, 10);
+~~~
+
 
 
 <p align="center">Made with 💙 by Eduardo Duarte 👽</p>
