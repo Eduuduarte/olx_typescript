@@ -6,7 +6,7 @@
 
 </p>
 
-# Instalatin
+# Instalation
 
 ### creating project
 ~~~bash
@@ -106,6 +106,14 @@ export const sequelize = new Sequelize(
 ~~~bash
     const payload = (Date.now() + Math.random()).toString();
     const token = await bcrypt.hash(payload, 10);
+~~~
+
+### Use the bcrypt to encrypt password
+
+password = variant catched in request http
+
+~~~bash
+const passwordHash = (await bcrypt.hash(password, 10)).toString();
 ~~~
 
 
